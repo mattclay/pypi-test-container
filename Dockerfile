@@ -10,6 +10,7 @@ COPY files/pip/*.txt /tmp/setup/
 
 RUN python -m venv /root/devpi/
 RUN /root/devpi/bin/pip install -r /tmp/setup/requirements.txt -c /tmp/setup/constraints.txt --disable-pip-version-check
+RUN cd /root/devpi/lib/python*/site-packages/ && rm -rf pip pip-* setuptools setuptools-*
 
 FROM base as output
 

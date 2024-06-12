@@ -3,3 +3,4 @@ devpi-server:
     port: 3141
     restrict-modify: root
     requests-only: true
+    replica-max-retries: 3

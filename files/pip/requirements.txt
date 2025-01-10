@@ -1,1 +1,2 @@
 devpi-server
+jaraco.text  # required for pkg_resources when deleting setuptools, since it bundles this package

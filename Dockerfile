@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/alpine:3.21.2 AS base
+FROM public.ecr.aws/docker/library/alpine:3.22.1 AS base
 
 RUN apk add --no-cache python3
 
@@ -22,6 +22,9 @@ FROM base as output
 
 COPY --from=builder /root/devpi/ /root/devpi/
 COPY files/devpi-server/devpi-server.yml /root/.config/devpi-server/devpi-server.yml
+
+# Avoid `pkg_resources` deprecation warning caused by the `pyramid` package.
+ENV PYTHONWARNINGS="ignore:pkg_resources is deprecated as an API:UserWarning:pyramid.path:0"
 
 RUN /root/devpi/bin/devpi-init
 
